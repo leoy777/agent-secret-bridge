@@ -1,0 +1,30 @@
+version: 1
+
+vault:
+  type: system
+
+audit:
+  path: asb-audit.jsonl
+
+capabilities:
+  - id: pikvm-status
+    credential: pikvm-admin
+
+    transport:
+      type: http
+      base_url: https://pikvm.home.example
+      auth:
+        type: basic
+        username: admin
+
+    allow:
+      methods:
+        - GET
+      paths:
+        - /api/info
+        - /api/health
+
+    limits:
+      timeout_seconds: 15
+      max_response_bytes: 262144
+      max_requests_per_minute: 60

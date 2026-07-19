@@ -1,0 +1,47 @@
+[package]
+name = "agent-secret-bridge"
+version = "0.2.1"
+edition = "2024"
+license = "MIT"
+description = "A local capability broker that lets agents use credentials without reading them"
+rust-version = "1.85"
+readme = "README.md"
+documentation = "https://docs.rs/agent-secret-bridge"
+keywords = ["agent", "credentials", "mcp", "security", "secrets"]
+categories = ["authentication", "command-line-utilities"]
+exclude = ["*.jsonl", "examples/*.jsonl"]
+
+[[bin]]
+name = "asb"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+async-trait = "0.1"
+base64 = "0.22"
+clap = { version = "4", features = ["derive"] }
+chacha20poly1305 = "0.10"
+fs2 = "0.4"
+getrandom = "0.4"
+keyring = { version = "3", features = ["apple-native", "windows-native", "sync-secret-service"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+rpassword = "7"
+secrecy = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yml = "0.0.12"
+sha2 = "0.10"
+subtle = "2"
+time = { version = "0.3", features = ["formatting", "macros"] }
+tokio = { version = "1", features = ["io-std", "io-util", "macros", "net", "process", "rt-multi-thread", "signal", "time"] }
+url = "2"
+zeroize = "1"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"

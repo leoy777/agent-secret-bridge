@@ -1,0 +1,25 @@
+version: 1
+
+vault:
+  type: encrypted_file
+  path: /var/lib/agent-secret-bridge/vault.asb
+  key_file: /etc/agent-secret-bridge/vault.key
+
+audit:
+  path: /var/lib/agent-secret-bridge/audit.jsonl
+
+capabilities:
+  - id: internal-status-api
+    credential: internal-api-token
+    transport:
+      type: http
+      base_url: https://status.internal.example
+      auth:
+        type: bearer
+    allow:
+      methods: [GET]
+      paths: [/api/status]
+    limits:
+      timeout_seconds: 15
+      max_response_bytes: 262144
+      max_requests_per_minute: 60

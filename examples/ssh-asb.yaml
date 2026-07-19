@@ -1,0 +1,34 @@
+version: 1
+
+vault:
+  type: system
+
+audit:
+  path: asb-audit.jsonl
+
+ssh_capabilities:
+  - id: ubuntu-mini
+    host: 192.0.2.20
+    port: 22
+    user: codex-maint
+    known_hosts_file: /Users/example/.ssh/asb_known_hosts
+    identity_public_key_file: /Users/example/.ssh/id_ed25519_asb.pub
+
+    operations:
+      - id: uptime
+        command:
+          - /usr/bin/uptime
+        read_only: true
+
+      - id: restart-nginx
+        command:
+          - sudo
+          - /usr/bin/systemctl
+          - restart
+          - nginx
+        read_only: false
+
+    limits:
+      timeout_seconds: 30
+      max_response_bytes: 262144
+      max_requests_per_minute: 10

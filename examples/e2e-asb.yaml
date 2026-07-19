@@ -1,0 +1,26 @@
+version: 1
+
+audit:
+  path: e2e-audit.jsonl
+
+capabilities:
+  - id: local-canary
+    credential: asb-e2e-canary-20260719
+
+    transport:
+      type: http
+      base_url: http://127.0.0.1:38471
+      allow_insecure_http: true
+      auth:
+        type: basic
+        username: asb-test
+
+    allow:
+      methods:
+        - GET
+      paths:
+        - /echo-auth
+
+    limits:
+      timeout_seconds: 15
+      max_response_bytes: 4096
