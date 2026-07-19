@@ -179,4 +179,7 @@ direction is recorded in [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## License
 
-MIT
+[MIT](LICENSE). Copyright (c) 2026 leoy777 and Agent Secret Bridge
+contributors. Redistributions must retain the copyright and license notice in
+accordance with the MIT License. The original project is
+<https://github.com/leoy777/agent-secret-bridge>.
